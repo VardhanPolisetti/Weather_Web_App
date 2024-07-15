@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+    body{
+        height: 100vh;
+        background-image: linear-gradient( 58.2deg, rgba(40,91,212,0.73) -3%, rgb(0 0 0 / 96%) 49.3%, rgb(31 33 89 / 86%) 97.7% );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        height: 720px;
+        width: 1130px;
+        background-color: rgb(0, 0, 0);
+        border-radius: 30px;
+        overflow: hidden;
+        display: flex;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .leftbar{
+        padding: 20px;
+        flex: 1.5;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .rightbar{
+        background-color: #000000b3;
+        flex: 1;
+    }
+    h1{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: 45px;
+    }
+    #icon{
+        border-radius: 50%;
+        object-fit: cover; 
+    }
+    .Wicon{
+        display: flex;
+        justify-content: center;
+    }
+    form{
+        height: 10%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+    input{
+        height: 30px;
+        width: 80%;
+        border-radius: 20px;
+        border: 1px solid white;
+        padding: 5px;
+        padding-left: 17px;
+        background-color: transparent;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    input:focus{
+        outline: 2px solid blue;
+    }
+    #searchicon{
+        height: 30px;
+        width: 30px;
+    }
+    button{
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        background-color: rgb(58, 68, 76);
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    .cityname{
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #name{
+        color: white;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    #locicon{
+        height: 32px;
+        width: 32px;
+    }
+    .info{
+        height: 25%;
+        padding: 20px;
+        color: white;
+        font-family: Roboto;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    p{
+        display: flex;
+        justify-content: space-between;
+    }
+    .homecityname{
+        height: 40px;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    #locicon2{
+        height: 40px;
+        width: 41px;
+    }
+    #name2{
+        color: white;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .bottominfo{
+        height: 20%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .temp{
+        color: white;
+        font-family: Roboto;
+        font-size: 120px;
+    }
+    .dayinfo{
+        font-family: Roboto;
+        color: white;
+        position: relative;
+        top: 50px;
+        left: 10px;
+    }
+    #cond{
+        font-weight: bold;
+    }
+    #day, #date{
+        font-size: 15px;
+    }
+    #errmsg{
+        color: wheat;
+        font-family: Roboto;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        margin: 0px;
+    }
+    #CouStat{
+      color:white;
+      font-size: 14px;
+      font-family: Roboto;
+      margin-top: 5px;
+    }
+  .headCN{
+    display: flex;
+    align-items: center;
+  }
+</style>
+<body>
+   <div class="container">
+        <div class="leftbar">
+            <div class="homecityname">
+                <div class="headCN">
+                  <img src="https://cdn-icons-png.flaticon.com/128/9800/9800512.png" id="locicon2">
+                  <span id="name2"><%= cityName %></span>
+                </div>
+                <span id="CouStat"><%= country %>, <%= state %></span>
+            </div>
+
+            <div class="bottominfo">
+                <div class="dayinfo">
+                    <span id="cond"><%= condition %></span><br><br>
+                    <span id="day"><%= day%></span><br>
+                    <span id="date"><%= date%></span>
+                </div>
+                <div class="temp">
+                    <%= tempreture %>
+                </div>
+            </div>
+        </div>
+
+        <div class="rightbar">
+            <h1>Weather</h1>
+            <div class="Wicon">
+                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRipHndwtxF22kyb-h-FnhPEarWmsJsbXMB6O2HGA_MptSaLZD_" id="icon">
+            </div>
+
+            <div class="inputloc">
+                <form action="/" method="post">
+                    <input type="text" name="location" placeholder="Search any City">
+                    <button type="submit">
+                </form>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/chatmate-77760.appspot.com/o/searchicon2.png?alt=media&token=2fbcffcd-7a7e-45ca-8ec2-a38e36de5743" id="searchicon">
+                </button>
+            </div>
+            <% if(errstate){ %>
+                <p id="errmsg">No City Found</p>
+            <% } %>
+            <div class="cityname">
+                <img src="http://cdn-icons-png.flaticon.com/128/9800/9800512.png" id="locicon">
+                <span id="name"><%= cityName %></span>
+            </div>
+
+            <div class="info">
+                <p><span>Wind Speed</span><span><%= windSpeed %></span></p>
+                <p><span>Wind Direction</span><span><%= windDir %></span></p>
+                <p><span>Humadity</span><span><%= humadity %></span></p>
+                <p><span>Pressure</span><span><%= pressure %></span></p>
+            </div>
+        </div>
+   </div>
+<script>
+    var weatherCondition = document.getElementById('cond').textContent;
+    if(weatherCondition === "Patchy rain possible"){
+        document.querySelector('.container').style.backgroundImage = "url('https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?cs=srgb&dl=pexels-pixabay-209831.jpg&fm=jpg')";
+    }else if(weatherCondition === "Moderate rain"){
+        document.querySelector('.container').style.backgroundImage = "url('https://cdn.wallpapersafari.com/39/31/AJ8Rli.jpg')";
+    }else if(weatherCondition === "Partly cloudy"){
+        document.querySelector('.container').style.backgroundImage = "url('https://th.bing.com/th/id/OIP.wd3HM0ofCohJPDWF2HLc1QHaFj?rs=1&pid=ImgDetMain')";
+    }else if(weatherCondition === "Cloudy"){
+        document.querySelector('.container').style.backgroundImage = "url('https://www.photos-public-domain.com/wp-content/uploads/2012/04/fluffy-white-clouds-600x400.jpg')";
+    }else if(weatherCondition === "Light rain shower"){
+        document.querySelector('.container').style.backgroundImage = "url('https://townsquare.media/site/532/files/2019/11/RS25322_GettyImages-1053791954-scr.jpg?w=1200&h=0&zc=1&s=0&a=t&q=89')";
+    }else if(weatherCondition === "Light rain" || weatherCondition === "Patchy rain nearby"){
+        document.querySelector('.container').style.backgroundImage = "url('https://wallpapercave.com/wp/wp7226285.jpg')";
+    }else if(weatherCondition === "Clear"){
+        document.querySelector('.container').style.backgroundImage = "url('https://i.pinimg.com/originals/35/92/5d/35925d88bed4126096ea6fc1cd48c840.jpg')";
+    }else if(weatherCondition === "Sunny"){
+        document.querySelector('.container').style.backgroundImage = "url('https://le-cdn.hibuwebsites.com/fd21472611d1460584f5eaafd4687d05/dms3rep/multi/opt/Sun-1920w.jpg')";
+    }else if(weatherCondition === "Moderate or heavy rain shower"){
+        document.querySelector('.container').style.backgroundImage = "url('https://i.ytimg.com/vi/hlu8jX6Or0Q/maxresdefault.jpg')";
+    }else if(weatherCondition === "Moderate or heavy rain with thunder"){
+        document.querySelector('.container').style.backgroundImage = "url('https://www.worldatlas.com/upload/97/43/02/shutterstock-1162552204.jpg')";
+    }else if(weatherCondition === "Mist"){
+        document.querySelector('.container').style.backgroundImage = "url('https://www.wallpaperbetter.com/wallpaper/291/987/743/mountain-mist-sky-clouds-snow-blue-style-1080P-wallpaper.jpg')";
+    }else if(weatherCondition === "Overcast"){
+        document.querySelector('.container').style.backgroundImage = "url('https://live.staticflickr.com/1086/5109794366_fde3ac812c.jpg')";
+    }else{
+        document.querySelector('.container').style.backgroundImage = "url('https://i.pinimg.com/originals/2c/8d/87/2c8d8718be363c3b75d707e83de8a269.jpg')";
+    }
+</script>
+</body>
+</html>
